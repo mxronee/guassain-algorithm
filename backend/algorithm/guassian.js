@@ -1,4 +1,4 @@
-export function gaussianElimination(inputMatrix) {
+﻿export function gaussianElimination(inputMatrix) {
     const matrix = inputMatrix.map(row => row.map(Number));
 
     const rows = matrix.length;
@@ -14,7 +14,6 @@ export function gaussianElimination(inputMatrix) {
         col < variableCount && pivotRow < rows;
         col++
     ) {
-        // หา pivot
         let maxRow = pivotRow;
 
         for (let row = pivotRow + 1; row < rows; row++) {
@@ -26,12 +25,10 @@ export function gaussianElimination(inputMatrix) {
             }
         }
 
-        // ไม่มี pivot
         if (Math.abs(matrix[maxRow][col]) < 1e-10) {
             continue;
         }
 
-        // สลับแถว
         if (maxRow !== pivotRow) {
             [matrix[pivotRow], matrix[maxRow]] =
                 [matrix[maxRow], matrix[pivotRow]];
@@ -42,7 +39,6 @@ export function gaussianElimination(inputMatrix) {
             });
         }
 
-        // กำจัดค่าด้านล่าง pivot
         for (let row = pivotRow + 1; row < rows; row++) {
             const factor =
                 matrix[row][col] / matrix[pivotRow][col];
@@ -77,11 +73,6 @@ export function gaussianElimination(inputMatrix) {
     };
 }
 
-
-// -------------------------
-// Helper Functions
-// -------------------------
-
 function copyMatrix(matrix) {
     return matrix.map(row => [...row]);
 }
@@ -99,11 +90,6 @@ function cleanMatrix(matrix) {
 function formatNumber(number) {
     return Number(number.toFixed(4));
 }
-
-
-// -------------------------
-// Back Substitution
-// -------------------------
 
 function solveByBackSubstitution(matrix) {
     const rows = matrix.length;
@@ -123,7 +109,6 @@ function solveByBackSubstitution(matrix) {
             }
         }
 
-        // แถวไม่มี pivot
         if (pivotColumn === -1) {
             if (Math.abs(matrix[i][variables]) > 1e-10) {
                 return {
