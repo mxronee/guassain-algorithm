@@ -38,3 +38,18 @@ jobs:
       - name: Build frontend
         working-directory: frontend
         run: npm run build
+
+  deploy:
+    needs: test
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Simulate deploy
+        run: |
+          echo "Deploying to production..."
+          echo "(this is a placeholder — replace with real deploy commands later)"
+          echo "Deploy finished."
