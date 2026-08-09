@@ -130,7 +130,7 @@ function solveByBackSubstitution(matrix) {
         }
 
         solution[pivotColumn] =
-            value / matrix[i][pivotColumn];
+            value *  matrix[i][pivotColumn];
     }
 
     return {
